@@ -2,20 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-gray-300 text-black;
+}
+
+.form-control {
+  @apply w-full p-2 rounded-md text-black border-gray-300;
+  border-width: 1px;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-md bg-blue-500 text-white;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 rounded-md bg-gray-500 text-white;
+}
+
+.btn-danger {
+  @apply px-4 py-2 rounded-md bg-red-500 text-white;
+}
+
+.btn-success {
+  @apply px-4 py-2 rounded-md bg-green-500 text-white;
+}
+
+.sidebar {
+  @apply w-64 h-screen bg-gray-900 text-white;
+}
+
+.sidebar-header {
+  @apply p-4 text-center bg-indigo-600 text-xl font-bold;
+}
+
+.sidebar-menu {
+  @apply p-4;
+}
+
+.sidebar-menu div {
+  @apply px-4 py-2 text-gray-400 
+  hover:bg-gray-700 hover:text-white rounded-md;
+}
+
+.sidebar-menu div a {
+  @apply w-full block;
+}
+
+.table {
+  @apply w-full shadow-lg;
+}
+
+.table thead {
+  @apply bg-gray-700 text-white;
+}
+
+.table thead th {
+  @apply text-left p-4;
+}
+
+.table thead th:first-child {
+  @apply rounded-tl-xl;
+}
+
+.table thead th:last-child {
+  @apply rounded-tr-xl;
+}
+
+.table tbody tr {
+  @apply bg-gray-100 text-black;
+}
+
+.table tbody td {
+  @apply p-4 border-b border-gray-400;
+}
+
+.table tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+.table tbody tr:last-child td:first-child {
+  @apply rounded-bl-xl border-b-0;
+}
+
+.table tbody tr:last-child td:last-child {
+  @apply rounded-br-xl border-b-0;
 }
