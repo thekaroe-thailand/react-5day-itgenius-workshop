@@ -40,12 +40,29 @@ export default function Page() {
         try {
             const resCategories = await axios.get(`${config.apiUrl}/api/category/list`);
             setCategories(resCategories.data);
-            setBook({ ...book, categoryId: Number(resCategories.data[0].id) });
+
+            // fixbug day 5
+            setBook(prevBook => ({
+                ...prevBook,
+                categoryId: Number(resCategories.data[0].id)
+            }));
 
             const resPublishers = await axios.get(`${config.apiUrl}/api/publisher/list`);
             setPublishers(resPublishers.data);
+
+            // fixbug day 5
+            setBook(prevBook => ({
+                ...prevBook,
+                publisherId: Number(resPublishers.data[0].id)
+            }));
+
             setAuthors(resPublishers.data[0].authors); // กำหนดข้อมูลผู้แต่งเป็นค่าเริ่มต้น
-            setBook({ ...book, authorId: Number(resPublishers.data[0].authors[0].id) });
+
+            // fixbug day 5
+            setBook(prevBook => ({
+                ...prevBook,
+                authorId: Number(resPublishers.data[0].authors[0].id)
+            }));
         } catch (err: any) {
             Swal.fire({
                 icon: "error",
@@ -58,11 +75,13 @@ export default function Page() {
         // ค้นหาสำนักพิมพ์จาก id
         const publisher = publishers.find((p: any) => p.id === publisherId) as any;
         setAuthors(publisher.authors); // กำหนดผู้แต่ง
-        setBook({
-            ...book,
-            authorId: Number(publisher.authors[0].id),
-            publisherId: publisherId
-        });
+
+        // fixbug day 5
+        setBook(prevBook => ({
+            ...prevBook,
+            publisherId: publisherId,
+            authorId: Number(publisher.authors[0].id)
+        }));
     }
     const handleClearForm = () => {
         setBook({
@@ -77,6 +96,7 @@ export default function Page() {
     }
     const handleSave = async () => {
         try {
+            console.log(book);
             if (book.isbn === '' || book.name === '' || book.price === 0 || book.categoryId === 0 || book.authorId === 0 || book.publisherId === 0) {
                 Swal.fire({
                     icon: "warning",
@@ -172,7 +192,7 @@ export default function Page() {
             </tbody>
         </table>
 
-        <Modal title="เพิ่มรายการ" isShow={isShowModal}>
+        <Modal title="เพิ่มรายการ" isShow={isShowModal} onClose={handleCloseModal}>
             <div>isbn</div>
             <input type="text" className="form-control"
                 onChange={(e) => setBook({ ...book, isbn: e.target.value })}
@@ -185,7 +205,7 @@ export default function Page() {
                 value={book.name}
             />
 
-            <div className="mt-4">ราคา</div>
+            <div className="mt-4">ราคา {book.price}</div>
             <input type="text" className="form-control"
                 onChange={(e) => setBook({ ...book, price: Number(e.target.value) })}
                 value={book.price}
