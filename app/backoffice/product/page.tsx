@@ -22,9 +22,12 @@ export default function Page() {
         publisherId: 0 // สำนักพิมพ์
     }); // ข้อมูลหนังสือ
     useEffect(() => {  // ทำงานทุกครั้งที่มีการ render หน้า
-        fetchDataBook();
-        fetchData();
+        if (localStorage.getItem(config.tokenKey)) {
+            fetchDataBook();
+            fetchData();
+        }
     }, []);
+
     const handleShowModal = () => {
         setIsShowModal(true);
     }
@@ -33,7 +36,11 @@ export default function Page() {
         handleClearForm();
     }
     const fetchDataBook = async () => { // ดึงข้อมูลจากฐานข้อมูล
-        const res = await axios.get(`${config.apiUrl}/api/book/list`);
+        const token = localStorage.getItem(config.tokenKey);
+        const headers = {
+            "Authorization": `Bearer ${token}`
+        }
+        const res = await axios.get(`${config.apiUrl}/api/book/list`, { headers });
         setBooks(res.data);
     }
     const fetchData = async () => { // ดึงข้อมูลจากฐานข้อมูล
@@ -96,7 +103,6 @@ export default function Page() {
     }
     const handleSave = async () => {
         try {
-            console.log(book);
             if (book.isbn === '' || book.name === '' || book.price === 0 || book.categoryId === 0 || book.authorId === 0 || book.publisherId === 0) {
                 Swal.fire({
                     icon: "warning",
@@ -205,7 +211,7 @@ export default function Page() {
                 value={book.name}
             />
 
-            <div className="mt-4">ราคา {book.price}</div>
+            <div className="mt-4">ราคา</div>
             <input type="text" className="form-control"
                 onChange={(e) => setBook({ ...book, price: Number(e.target.value) })}
                 value={book.price}

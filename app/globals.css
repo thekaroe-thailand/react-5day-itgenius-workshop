@@ -32,7 +32,7 @@ body {
 }
 
 .sidebar-header {
-  @apply p-4 text-center bg-indigo-600 text-xl font-bold;
+  @apply p-4 text-center bg-gradient-to-br from-blue-800 to-pink-600 text-xl font-bold;
 }
 
 .sidebar-menu {
