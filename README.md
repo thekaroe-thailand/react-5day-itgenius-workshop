@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+https://cdnjs.com/libraries/font-awesome
 
-## Getting Started
+https://github.com/thekaroe-thailand/react5day-itgenius
+https://github.com/thekaroe-thailand/next-5-day-itgenius
+https://github.com/thekaroe-thailand/nodejs-itgenius
+https://github.com/thekaroe-thailand/react-5day-itgenius-workshop
 
-First, run the development server:
+npx tsc --init
+npm i prisma
+npx prisma init --datasource-provider PostgreSQL
+npx prisma studio
 
-```bash
+contains = %keyword%
+startsWith = keyword%
+endsWith = %keyword
+gt = > 
+lt = <
+gte = >=
+lte = <=
+
+---
+npx prisma db pull = แปลงตารางให้กลายเป็นโค้ด Model
+---
+npx prisma db push = แปลงโค้ด Model ให้กลายเป็นตาราง
+npx prisma generate
+---
+
+
+
+DAY 4
+npx create-next-app@latest
+cd my-app
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+npm i sweetalert2
+npm i axios
+npm i dayjs
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+// Backend
+npm i cors
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+day5
+บรรทัดที่ 7, 10, 18, 23
 
-## Learn More
+npm i apexcharts
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
